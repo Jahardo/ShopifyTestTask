@@ -1,0 +1,83 @@
+{% schema %}
+{
+  "name": "Slider",
+  "settings": [{
+    "id": "slider_title",
+    "type" : "text",
+    "label": "Text box Heading",
+    "default": "Title"
+  },
+    {
+      "type": "color",
+      "id": "buttons_color",
+      "label": "Button's color",
+      "default": "#3d4246"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Titles color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "firstBg_color",
+      "label": "First background color",
+      "default": "#3d4246"
+    },
+    {
+      "type": "color",
+      "id": "secondBg_color",
+      "label": "Second background color",
+      "default": "#3d4246"
+    }],
+  "blocks": [
+    {
+      "type": "slider_item",
+      "name": "Slider Item",
+      "settings": [
+        {
+          "id":"slider_item_title",
+          "type" : "text",
+          "label": "Text box Heading",
+          "default": "Title"
+        },
+        {
+          "id": "image",
+          "type" : "image_picker",
+          "label": "Image"
+        },
+        {
+          "id":"product_link",
+          "type":"url",
+          "label": "URL link"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#1B7ECA"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{{ "slider.css" | asset_url  | stylesheet_tag }}
+<div class="scheme" style="background-color: {{ section.settings.firstBg_color }}" >
+    <h2 style="color:{{ section.settings.title_color }}" class="title">{{ section.settings.slider_title }}</h2>
+    <div style="background-color: {{ section.settings.secondBg_color }}" class="wrapper">
+        <img style="background-color: {{ section.settings.buttons_color}}" src="{{ "button.svg" | asset_url }}"  class="btn right" id="btn-right">
+        <ul class="slider">
+            {% for block in section.blocks %}
+                <li style="color: {{ block.settings.title_color }}" class="item">
+                    <img class="img" src="{{ block.settings.image | img_url:width:200 }}" alt="{{ block.settings.slider_item_title }}"  draggable="false"/>
+                    <p>{{ block.settings.slider_item_title }}</p>
+                    <a href="{{ block.settings.product_link }}">View Product</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <img style="background-color: {{ section.settings.buttons_color}}" src="{{ "button.svg" | asset_url }}"  class="btn left">
+    </div>
+</div>
+{{ "slider.js" | asset_url | script_tag }}

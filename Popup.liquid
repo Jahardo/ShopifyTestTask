@@ -1,0 +1,15 @@
+<div>
+    <button class="open-btn" id="open-btn">More About Product</button>
+    <div class="modal" id="modal">
+        <div class="content-in-modal" id="content-in-modal">
+            <div>
+                <h1>{{ product.id }}</h1>
+                <p>{{ product.price_min | money }} - {{ product.price_max | money }}</p>
+                <p>{{ product.title | handle  }}</p>
+            </div>
+            <button class="close-btn" id="close-btn">X</button>
+        </div>
+    </div>
+</div>
+{{ "popup.js" | asset_url | script_tag  }}
+{{ "popup.css" | asset_url | stylesheet_tag }}

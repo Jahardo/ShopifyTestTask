@@ -1,0 +1,34 @@
+.open-btn {
+    background: red;
+}
+.close-btn {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: blueviolet;
+    right: 0;
+}
+.content-in-modal {
+    position: relative;
+    width:500px;
+    height:500px;
+    background: aquamarine;
+}
+.modal {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.modal.open {
+    opacity: 1;
+    z-index: 999;
+}
